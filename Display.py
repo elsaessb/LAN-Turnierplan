@@ -124,7 +124,7 @@ class Display:
 
     def get_matches_for_game(self):
         self.list_of_matches = []
-        filename = "matches/" + self.selected_game + ".txt"
+        filename = "save/matches/" + self.selected_game + ".txt"
         current_game = Game("", "", self)
         for game in self.t.games:
             if game.name == self.selected_game:

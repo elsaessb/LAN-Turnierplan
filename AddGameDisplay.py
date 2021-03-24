@@ -20,7 +20,7 @@ class AddGameDisplay:
             self.window.title("Add Game")
 
             self.lbl_matches = tk.Label(self.window, textvariable=self.text_error)
-            self.lbl_games = tk.Label(self.window, text="Game " + self.selected_game + "not in Games List.\nWhat Type "
+            self.lbl_games = tk.Label(self.window, text="Game " + self.selected_game + " not in Games List.\nWhat Type "
                                                                                        "is it (AvA, XvX, 1v1, 2v2)?")
 
             self.lbl_matches.grid(row=2, column=0, sticky="ew")

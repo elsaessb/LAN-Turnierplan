@@ -38,9 +38,11 @@ class Turnier:
             message = ""
 
     def save_current_turnier(self):
-        if os.path.exists("turnier_tmp.txt"):
-            os.remove("turnier_tmp.txt")
-        f = open("turnier_tmp.txt", "a")
+        if not os.path.exists("save/"):
+            os.makedirs("save/")
+        if os.path.exists("save/turnier_tmp.txt"):
+            os.remove("save/turnier_tmp.txt")
+        f = open("save/turnier_tmp.txt", "a")
 
         message = ""
         sorted_persons = sorted(self.persons, key=lambda x: x.id, reverse=False)
@@ -56,9 +58,9 @@ class Turnier:
         self.save_games()
 
     def save_games(self):
-        if os.path.exists("games.txt"):
-            os.remove("games.txt")
-        f = open("games.txt", "a")
+        if os.path.exists("save/games.txt"):
+            os.remove("save/games.txt")
+        f = open("save/games.txt", "a")
 
         message = ""
         for game in self.games:
@@ -69,7 +71,11 @@ class Turnier:
         f.close()
 
     def load_games(self):
-        f = open("games.txt", "r")
+        if not os.path.exists("save/"):
+            os.makedirs("save/")
+        if not os.path.exists("save/games.txt"):
+            return
+        f = open("save/games.txt", "r")
         gameExists = False
         data = f.read()
         lines = data.split(";\n")
@@ -96,8 +102,11 @@ class Turnier:
         idTxt = ""
         vName = ""
         nName = ""
-
-        f = open("turnier_tmp.txt", "r")
+        if not os.path.exists("save/"):
+            os.makedirs("save/")
+        if not os.path.exists("save/turnier_tmp.txt"):
+            return
+        f = open("save/turnier_tmp.txt", "r")
         data = f.read()
         lines = data.split(";\n")
         for line in lines:

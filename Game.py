@@ -20,7 +20,7 @@ class Game:
         return True
 
     def clear_matches(self):
-        filename = "matches/" + self.name + ".txt"
+        filename = "save/matches/" + self.name + ".txt"
         if os.path.exists(filename):
             f = open(filename, "w+")
             f.truncate(0)
@@ -28,7 +28,7 @@ class Game:
             self.matches = []
 
     def load_matches(self):
-        filename = "matches/" + self.name + ".txt"
+        filename = "save/matches/" + self.name + ".txt"
         if os.path.exists(filename):
             f = open(filename, "r")
             data = f.read()
@@ -70,9 +70,9 @@ class Game:
             print("ERROR: File " + filename + " not found")
 
     def write_matches(self):
-        if not os.path.exists("matches/"):
-            os.makedirs("matches/")
-        filename = "matches/" + self.name + ".txt"
+        if not os.path.exists("save/matches/"):
+            os.makedirs("save/matches")
+        filename = "save/matches/" + self.name + ".txt"
         f = open(filename, "a")
 
         if self.matches != []:
@@ -102,7 +102,7 @@ class Game:
         f.close()
 
     def write_match(self, match):
-        filename = "matches/" + self.name + ".txt"
+        filename = "save/matches/" + self.name + ".txt"
         f = open(filename, "r")
 
         data = f.read()
