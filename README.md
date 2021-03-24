@@ -16,5 +16,5 @@ Punktesystem überarbeiten
 |% der Spiele gespielt | Siegesrate in % | Punktebonus |
 |--------------------- | --------------- | ----------- |
 |<40                   | <50             | 0           |
-|<70                   | <50             | 1           |
-|>=70                  | <50             | 3           |
+|<60                   | <50             | 1           |
+|>=60                  | <50             | 3           |
