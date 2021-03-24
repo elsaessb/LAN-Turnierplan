@@ -16,6 +16,8 @@ class Display:
 
         self.variable = tk.StringVar(self.window)
         self.OptionsList = self.get_games_from_turnier()
+        if len(self.OptionsList) == 0:
+            self.OptionsList.append("No Games")
         self.variable.set(self.OptionsList[0])
         self.selected_game = self.OptionsList[0]
         self.selected_match = ""
