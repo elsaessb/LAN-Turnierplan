@@ -221,6 +221,6 @@ class Display:
         p = self.t.calculate_score()
         self.score_string = ""
         for person in p:
-            self.score_string += person.get_name_with_id() + "\t" + str(person.score) + "\n"
+            self.score_string += person.get_name_with_id() + "\t" + "%.2f" % person.score + "\t" + "%.2f" % person.winrate + "%\n"
 
         self.persons_vName.set(self.score_string)

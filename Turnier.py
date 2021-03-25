@@ -220,10 +220,33 @@ class Turnier:
 
         raise SyntaxError("Keine Person hat ID '" + _id + "'")
 
+    def calculate_matches_per_person(self):
+        for person in self.persons:
+            person.match_count = 0
+        for game in self.games:
+            for match in game.matches:
+                for person in match.team1:
+                    person.match_count += 1
+                for person in match.team2:
+                    person.match_count += 1
+
+    def get_num_of_matches(self):
+        i = 0
+        for game in self.games:
+            i += len(game.matches)
+
+        return i
+
     def calculate_score(self):
         tmp_persons = self.persons
+        thresh_bonus1 = len(self.games) * 0.40
+        thresh_bonus2 = len(self.games) * 0.66
+        num_matches = self.get_num_of_matches()
+
         for person in tmp_persons:
             person.score = 0
+            self.calculate_matches_per_person()
+
             for game in self.games:
                 for match in game.matches:
                     if game.type != "AvA":
@@ -236,6 +259,17 @@ class Turnier:
                     elif game.type == "AvA":
                         if match.winner == person.id:
                             person.score += game.points * 1
+
+            if person.score != 0:
+                person.winrate = person.score / person.match_count
+            else:
+                person.winrate = 0.0
+
+            if len(person.games_played) > thresh_bonus1 and person.winrate < 0.5:
+                person.score += 0.1 * (1.0 - person.winrate) * num_matches
+
+            if len(person.games_played) > thresh_bonus2 and person.winrate < 0.5:
+                person.score += 0.2 * (1.0 - person.winrate) * num_matches
 
         new_persons_by_id = sorted(tmp_persons, key=lambda x: x.id, reverse=False)
         new_persons = sorted(new_persons_by_id, key=lambda x: (x.key_sort_score()), reverse=True)

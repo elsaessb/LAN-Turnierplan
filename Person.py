@@ -5,8 +5,10 @@ class Person:
         self.Nachname = nachname
         self.games_played = []
         self.score = 0
+        self.match_count = 0
         self.checkbox_games_vars = []
         self.checkbox_games_name = []
+        self.winrate = 0.0
 
     def append_game_playing(self, game):
         if game not in self.games_played:

@@ -2,6 +2,13 @@ class Match:
     def __init__(self, team1, team2, game):
         self.team1 = team1
         self.team2 = team2
+
+        for person in self.team1:
+            person.match_count += 1
+
+        for person in self.team2:
+            person.match_count += 1
+
         self.game = game
         self.winner = ""
         self.team1_score = 0
