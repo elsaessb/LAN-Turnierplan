@@ -62,14 +62,16 @@ class ResultDisplayAvA:
     def set_result(self):
         scoreT1 = self.entries[0].get()
 
+        words = scoreT1.split(",")
+
         if scoreT1 == "":
-            print("Ergebniss Team1 leer")
+            print("Ergebniss leer")
 
         for game in self.t.games:
             if game.name == self.selected_game:
                 match = game.get_match_from_string(self.selected_match)
                 if match != -1:
-                    match.set_winner_AvA(scoreT1)
+                    match.set_winner_AvA(words)
                     game.write_match(match)
 
                 else:

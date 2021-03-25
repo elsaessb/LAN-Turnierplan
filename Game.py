@@ -41,7 +41,7 @@ class Game:
                     team = 0
                     team1score = 0
                     team2score = 0
-                    winner = ""
+                    winner = []
                     stop = False
                     if len(words) >= 5:
                         for i in range(len(words) - 1):
@@ -52,7 +52,9 @@ class Game:
                                 team2score = words[len(words) - 1]
                                 stop = True
                             elif words[i] == "winner":
-                                winner = words[len(words) - 1]
+                                for j in range(i+1, (len(words)-1)):
+                                    winner.append(self.t.get_person_from_id(words[j]))
+                                 #words[len(words) - 1]
                                 stop = True
                             elif not stop:
                                 person = self.t.get_person_from_id(words[i])
@@ -137,7 +139,10 @@ class Game:
             pos_score = data.find(",", pos_match + len(search_string) - 1)
 
             old_string = data[pos_match:pos_endl + 1]
-            new_string = data[pos_match:pos_score + 1] + match.winner + ";"
+            new_string = data[pos_match:pos_score + 1]
+            for winnerID in match.winner:
+                new_string += winnerID + ","
+            new_string += ";"
             new_data = data.replace(old_string, new_string)
 
         f = open(filename, "w")

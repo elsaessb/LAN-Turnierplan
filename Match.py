@@ -10,7 +10,7 @@ class Match:
             person.match_count += 1
 
         self.game = game
-        self.winner = ""
+        self.winner = []
         self.team1_score = 0
         self.team2_score = 0
 

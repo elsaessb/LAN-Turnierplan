@@ -199,11 +199,14 @@ class Display:
                             else:
                                 team1string += person.Vorname + "(" + person.id + ")"
 
-                        if match.winner == "":
+                        if match.winner == []:
                             matches_text += team1string + "| winner = - \n"
                         else:
-                            matches_text += team1string + "| winner = " + \
-                                            self.t.get_person_from_id(match.winner).get_name_with_id() + "\n"
+                            matches_text += team1string + "| winner = "
+                            for name in match.winner:
+                                matches_text += name.get_name_with_id() + " "
+
+                            matches_text += "\n"
 
                         current_match = team1string
                         self.list_of_matches.append(current_match)

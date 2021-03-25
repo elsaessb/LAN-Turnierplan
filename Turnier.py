@@ -257,8 +257,9 @@ class Turnier:
                             if person in match.team2:
                                 person.score += game.points * 1
                     elif game.type == "AvA":
-                        if match.winner == person.id:
-                            person.score += game.points * 1
+                        for winnerID in match.winner:
+                            if winnerID == person:
+                                person.score += game.points * 1
 
             if person.score != 0:
                 person.winrate = person.score / person.match_count
