@@ -62,7 +62,7 @@ class Display:
         self.lbl_score_head = tk.Label(self.fr_score, text="Leaderboard", font="Courier")
 
         self.fr_score.grid(row=0, column=1, sticky="ns")
-        self.lbl_score.grid(row=1, column=0, sticky="ew")
+        self.lbl_score.grid(row=1, column=0, sticky="w")
         self.lbl_score_head.grid(row=0, column=0, sticky="ew")
 
         self.opt = tk.OptionMenu(self.fr_buttons, self.variable, *self.OptionsList, command=self.set_selection)
@@ -73,7 +73,11 @@ class Display:
 
     def load_last_turnier(self):
         self.t.load_last_turnier()
+        self.t.save_current_turnier()
+
+        print("GET GAMES")
         self.get_matches_for_game()
+        self.update_dropdown()
         self.refresh_score()
 
     def get_games_from_turnier(self):
@@ -204,7 +208,7 @@ class Display:
                         else:
                             matches_text += team1string + "| winner = "
                             for name in match.winner:
-                                matches_text += name.get_name_with_id() + " "
+                                matches_text += self.t.get_person_from_id(name).get_name_with_id() + " "
 
                             matches_text += "\n"
 
@@ -224,6 +228,11 @@ class Display:
         p = self.t.calculate_score()
         self.score_string = ""
         for person in p:
-            self.score_string += person.get_name_with_id() + "\t" + "%.2f" % person.score + "\t" + "%.2f" % person.winrate + "%\n"
+            if person.winrate == 1.0:
+                self.score_string += person.get_name_with_id() + "\t" + "%.1f" % person.score + "\t" + "%05.1f" % \
+                                     (person.winrate * 100) + "%\n"
+            else:
+                self.score_string += person.get_name_with_id() + "\t" + "%.1f" % person.score + "\t" + "%05.2f" % \
+                                     (person.winrate * 100) + "%\n"
 
         self.persons_vName.set(self.score_string)

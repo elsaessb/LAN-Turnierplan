@@ -53,8 +53,8 @@ class Game:
                                 stop = True
                             elif words[i] == "winner":
                                 for j in range(i+1, (len(words)-1)):
-                                    winner.append(self.t.get_person_from_id(words[j]))
-                                 #words[len(words) - 1]
+                                    winner.append(words[j])
+                                 #words[len(words) - 1]  self.t.get_person_from_id(words[j])
                                 stop = True
                             elif not stop:
                                 person = self.t.get_person_from_id(words[i])
@@ -141,7 +141,10 @@ class Game:
             old_string = data[pos_match:pos_endl + 1]
             new_string = data[pos_match:pos_score + 1]
             for winnerID in match.winner:
-                new_string += winnerID + ","
+                new_string += winnerID
+                if winnerID != match.winner[len(match.winner)-1]:
+                    new_string += ","
+
             new_string += ";"
             new_data = data.replace(old_string, new_string)
 

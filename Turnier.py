@@ -11,7 +11,7 @@ class Turnier:
         self.games = []
         self.persons = []
         self.loaded = False
-        self.load_last_turnier()
+        #self.load_last_turnier()
 
     def append_game(self, game):
         if game not in self.games:
@@ -258,7 +258,7 @@ class Turnier:
                                 person.score += game.points * 1
                     elif game.type == "AvA":
                         for winnerID in match.winner:
-                            if winnerID == person:
+                            if winnerID == person.id:
                                 person.score += game.points * 1
 
             if person.score != 0:
