@@ -43,7 +43,7 @@ class Game:
                     team2score = 0
                     winner = []
                     stop = False
-                    if len(words) >= 5:
+                    if len(words) >= 4:
                         for i in range(len(words) - 1):
                             if words[i] == "versus":
                                 team = 1

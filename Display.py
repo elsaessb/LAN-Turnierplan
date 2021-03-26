@@ -75,8 +75,10 @@ class Display:
         self.t.load_last_turnier()
         self.t.save_current_turnier()
 
-        print("GET GAMES")
-        self.get_matches_for_game()
+        for game in self.t.games:
+            self.set_selection(game.name)
+
+        self.set_selection(self.t.games[0].name)
         self.update_dropdown()
         self.refresh_score()
 
