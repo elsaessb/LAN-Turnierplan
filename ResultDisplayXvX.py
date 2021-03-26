@@ -21,7 +21,21 @@ class ResultDisplayXvX:
             self.lbl_games.grid(row=0, column=0, sticky="ew")
         else:
             self.variable = tk.StringVar(self.window)
-            self.OptionsList = matches_list
+            new_matches_list = []
+            for game in self.t.games:
+                if game.name == self.selected_game:
+                    for match_name in matches_list:
+                        match = game.get_match_from_string(match_name)
+                        result = ""
+                        if match.team1_score != match.team2_score:
+                            result = "##" + match_name + "##"
+                            print(result)
+                        else:
+                            result = match_name
+
+                        new_matches_list.append(result)
+
+            self.OptionsList = new_matches_list
             self.variable.set(self.OptionsList[0])
             self.selected_match = self.OptionsList[0]
 
@@ -42,7 +56,8 @@ class ResultDisplayXvX:
 
             for game in self.t.games:
                 if game.name == self.selected_game:
-                    match = game.get_match_from_string(self.selected_match)
+
+                    match = game.get_match_from_string(self.selected_match.replace('#', ''))
 
             self.entries[0].delete(0, tk.END)
             self.entries[0].insert(0, match.team1_score)
@@ -71,7 +86,7 @@ class ResultDisplayXvX:
 
         for game in self.t.games:
             if game.name == self.selected_game:
-                match = game.get_match_from_string(self.selected_match)
+                match = game.get_match_from_string(self.selected_match.replace('#', ''))
         self.entries[0].delete(0, tk.END)
         self.entries[0].insert(0, match.team1_score)
         self.entries[1].delete(0, tk.END)
@@ -87,7 +102,7 @@ class ResultDisplayXvX:
 
         for game in self.t.games:
             if game.name == self.selected_game:
-                match = game.get_match_from_string(self.selected_match)
+                match = game.get_match_from_string(self.selected_match.replace('#', ''))
                 if match != -1:
                     match.set_winner_XvX(scoreT1, scoreT2)
                     game.write_match(match)

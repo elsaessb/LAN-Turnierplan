@@ -113,6 +113,9 @@ class Display:
         for game in self.t.games:
             if game.name == self.selected_game:
                 if game.type == "AvA":
+                    #for match in self.list_of_matches:
+                        #if match.winner != []:
+
                     r = ResultDisplayAvA(self.t, self.selected_game, self.num_matches, self.list_of_matches)
                     r.run()
                 else:
