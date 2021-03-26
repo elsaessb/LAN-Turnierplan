@@ -6,10 +6,19 @@ from AddPlayerDisplay import AddPlayerDisplay
 
 class PlayersToGamesDisplay:
     def __init__(self, t):
+        self.t = t
+        if len(self.t.persons) == 0:
+            r = AddPlayerDisplay(self.t)
+            r.run()
+
+        if len(self.t.games) == 0:
+            r = AddGameDisplay(self.t, "")
+            r.run()
+
         self.game_name_list = []
         for game in t.games:
             self.game_name_list.append(game.name)
-        self.t = t
+
         self.window = tk.Tk()
         self.running = True
 
