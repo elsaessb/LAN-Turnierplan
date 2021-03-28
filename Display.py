@@ -113,9 +113,6 @@ class Display:
         for game in self.t.games:
             if game.name == self.selected_game:
                 if game.type == "AvA":
-                    #for match in self.list_of_matches:
-                        #if match.winner != []:
-
                     r = ResultDisplayAvA(self.t, self.selected_game, self.num_matches, self.list_of_matches)
                     r.run()
                 else:
@@ -229,6 +226,11 @@ class Display:
 
         self.refresh_score()
 
+    def write_scoreboard_to_txt(self, filename, score_string):
+        filename = "save/" + filename + ".txt"
+        f = open(filename, "w")
+        f.write(score_string)
+
     def refresh_score(self):
         p = self.t.calculate_score()
         self.score_string = ""
@@ -240,4 +242,5 @@ class Display:
                 self.score_string += person.get_name_with_id() + "\t" + "%.1f" % person.score + "\t" + "%05.2f" % \
                                      (person.winrate * 100) + "%\n"
 
+        self.write_scoreboard_to_txt("leaderboard",self.score_string)
         self.persons_vName.set(self.score_string)

@@ -5,6 +5,7 @@ from Person import Person
 class AddPlayerDisplay:
     def __init__(self, t):
         self.window = tk.Tk()
+        self.window.title("Add Player")
         self.running = True
         self.t = t
         self.max_id = "0"

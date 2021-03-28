@@ -7,6 +7,7 @@ from Match import Match
 class ResultDisplayXvX:
     def __init__(self, t, sel_game, num_matches, matches_list):
         self.window = tk.Tk()
+        self.window.title("set Result for " + sel_game)
         self.running = True
         self.t = t
         self.selected_game = sel_game
@@ -41,7 +42,7 @@ class ResultDisplayXvX:
 
             self.window.columnconfigure(1, minsize=200, weight=1)
             self.window.rowconfigure(0, minsize=20, weight=1)
-            self.window.title("Add Match Result")
+            #self.window.title("Add Match Result")
 
             self.entries = []
             for i in range(2):

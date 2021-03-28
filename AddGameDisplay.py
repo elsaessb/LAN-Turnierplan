@@ -7,6 +7,7 @@ class AddGameDisplay:
     def __init__(self, t, sel_game):
         if sel_game != "":
             self.window = tk.Tk()
+            self.window.title("Add Game")
             self.running = True
             self.t = t
             self.selected_game = sel_game
