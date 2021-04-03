@@ -1,0 +1,8 @@
+Benedikt(1)	7.4	41.67%
+Johannes(6)	5.4	20.00%
+Daniel(4)	4.7	12.50%
+Konstantin(5)	4.2	00.00%
+Fiwos(2)	3.9	37.50%
+Florian(3)	2.0	50.00%
+Raphael(7)	1.4	00.00%
+Lukas(8)	0.0	00.00%
